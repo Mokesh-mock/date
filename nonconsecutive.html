@@ -1,0 +1,28 @@
+<html>
+  <body>
+      <script>
+        let nonConsecutiveString = ''
+        function nonConsecutivefn (str) {
+          let arr = str.split('')
+          // nonConsecutiveString = arr.filter((element, index) => {
+          //   if (element !== arr[index + 1]) {
+          //     arr.splice(index, 2)
+          //     console.log(arr)
+          //   }
+          //   // return (element !== arr[index + 1])
+          // })
+          for(let i=0; i<arr.length; i++) {
+            if(arr[i] === arr[i+1]) {
+              arr.splice(i, 2)
+              nonConsecutiveString = arr.join('')
+              // nonConsecutivefn(nonConsecutiveString)
+              i=-1
+            }
+          }
+          return nonConsecutiveString
+        }
+        console.log(nonConsecutivefn('rgbbgbgr'))
+      </script>
+  </body>
+</html>
+<!-- rgbbgbgr -->
