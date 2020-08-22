@@ -3,15 +3,17 @@
       <script>
         function getSubStrings (str) {
             let result=[]
+            // let arr = str.split('')
             for(let i=0; i<str.length; i++) {
                 for(let j=i+1;j<str.length+1;j++) {
                     console.log(str.slice(i,j))
-                    result.push(str.slice(i, j))
+                    result.push(str.substring(i, j))
+                    // i=
                 }
             }
             return result
         }
-        console.log(getSubStrings('12'))
+        console.log(getSubStrings('abcdefghi'))
       </script>
   </body>
 </html>
