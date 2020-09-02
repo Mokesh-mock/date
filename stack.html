@@ -1,0 +1,30 @@
+<html>
+<body>
+  <script>
+    class stack {
+      constructor() {
+        this.items = []
+      }
+      add(element) {
+        this.items.push(element)
+      }
+      pop() {
+        return this.items.pop()
+      }
+      isEmpty() {
+        return this.items.length === 0
+      }
+      peek () {
+        return this.items[this.items.length-1]
+      }
+    }
+    let st = new stack()
+    st.add('1')
+    st.add(33)
+    st.add('2')
+    console.log(st)
+    console.log(st.isEmpty())
+    console.log(st.peek())
+  </script>
+</body>
+</html>

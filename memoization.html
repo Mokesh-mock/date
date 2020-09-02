@@ -1,0 +1,68 @@
+<html>
+<body>
+  <script>
+    
+    // without memoization, to compute the 50th Fibonacci number, 
+    // the recursive function must be called over 40 billion times 
+    // (40,730,022,147 times to be specific)!
+
+    // function fibonacci (n) {
+    //   console.log(n)
+    //   if(n === 0 || n === 1) return n
+    //   else return fibonacci(n-1) + fibonacci(n-2)
+    // }
+    // console.log(fibonacci(4))
+
+    // with memoization
+    // var fibonacci = (function() {
+    // var memo = {};
+    // function f(n) {
+    // var value;
+    // console.log(memo)
+    // if (n in memo) {
+    //   value = memo[n];
+    // } else {
+    //   if (n === 0 || n === 1)
+    //     value = n;
+    //   else
+    //     value = f(n - 1) + f(n - 2);
+    //     memo[n] = value;
+    //   }
+    // return value;
+    // }
+    // return f;
+    // })();
+    // var fibonacci = (function() {
+    //   let memo = {}
+    //   function f(n) {
+    //     console.log(memo)
+    //     if(n in memo) fibValue = memo[n]
+    //     else {
+    //       if (n === 0 || n === 1) fibValue = n
+    //       else fibValue = f(n-2) + f(n-1)
+    //       memo[n] = fibValue
+    //     }
+    //     // console.log(fibValue)
+    //     return fibValue
+    //   }
+    //   return f
+    // })()
+    // fibonacci(4)
+    let add = (() => {
+      let cache = {}
+      return (n) => {
+        console.log(cache)
+        if(n in cache) return 'cached value: ' + cache[n]
+        else {
+          let value = n + 10
+          cache[n] = value
+          return 'calculated value: ' + value
+        }
+      }
+    })()
+    console.log(add)
+    console.log(add(90))
+    console.log(add(90))
+  </script>
+</body>
+</html>

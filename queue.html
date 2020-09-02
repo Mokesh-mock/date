@@ -1,0 +1,31 @@
+<html>
+<body>
+  <script>
+    class queue {
+      constructor () {
+        this.items = []
+      }
+      enqueue(element) {
+        this.items.push(element)
+      }
+      dequeue() {
+        if(this.isEmpty()) return 'queue is empty'
+        else this.items.shift()
+      }
+      isEmpty() {
+        return this.items.length === 0
+      }
+      front() {
+        return this.items[0]
+      }
+    }
+    let qu = new queue()
+    console.log(qu.isEmpty())
+    qu.enqueue(11)
+    qu.enqueue(123)
+    console.log(qu)
+    console.log(qu.front())
+    console.log(qu)
+  </script>
+</body>
+</html>
