@@ -1,0 +1,85 @@
+<html>
+  <body>
+    <script>
+      function seatingFunction (sections) {
+        let rows = 0
+        let columns = 0
+        let Arrangement = {}
+        sections.map(e => {
+          if (e[0] > rows) {
+            rows = e[0]
+          }
+          if (e[1] > columns) {
+            columns = e[1]
+          }
+        })
+        // setting respective names to the seats
+        let seats = seatName(sections)
+        // renaming the seats with the passengers
+        Arrangement = addCount('Aisle', 1, seats, columns, rows)
+        Arrangement = addCount(
+                        'Window', 
+                         Arrangement.passenger, 
+                         Arrangement.seats, 
+                         columns, rows
+                      )
+        Arrangement = addCount(
+                        'Middle', 
+                        Arrangement.passenger, 
+                        Arrangement.seats, 
+                        columns, rows
+                      )
+        return(Arrangement.seats)
+      }
+
+      function seatName (array) {
+        const seats = []
+        for (let i = 0; i < array.length; i++) { // for all the elements
+          seats.push(Array(array[i][0]).fill().map(() => {
+            return Array(array[i][1]).fill('Middle') // filling middle seats
+          }
+          ))
+        }
+
+        for (let i = 0; i < seats.length; i++) { // rows
+          for (let j = 0; j < seats[i].length; j++) { // columns
+            seats[i][j][0] = 'Aisle'
+            seats[i][j][seats[i][j].length - 1] = 'Aisle' // filling aisle seats
+          }
+        }
+
+        for (let i = 0; i < seats[0].length; i++) {
+          seats[0][i][0] = 'Window' // filling window seats
+        }
+        for (let i = 0; i < seats[seats.length - 1].length; i++) {
+          seats[seats.length - 1][i][(seats[seats.length - 1][i].length) - 1] = 'Window' // filling window seats
+        }
+        return seats
+      }
+
+      function addCount (val, passenger, seats, columns, rows) {
+        for (let i = 0; i < columns; i++) {
+          for (let j = 0; j < rows; j++) {
+            if (seats[j] == null || seats[j][i] == null) { continue }
+            for (let k = 0; k < seats[j][i].length; k++) {
+              if (seats[j] != null && seats[j][i] != null && seats[j][i][k] === val) {
+                if (passenger <= passengersCount) seats[j][i][k] = passenger // add passenger count
+                else seats[j][i][k] = 'empty' // add null if passenger count exceeded
+                passenger++
+              }
+            }
+          }
+        }
+        return { 
+          seats: seats, 
+          passenger: passenger 
+        }
+      }
+
+      // function call
+      const arr = [	[3,2],	[4,3],	[2,3], [3,4]	] // dynamic inputs can be given
+      const passengersCount = 30
+      console.log(seatingFunction(arr))
+    </script>
+  </body>
+</html>
